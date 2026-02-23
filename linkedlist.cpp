@@ -11,7 +11,7 @@ struct Node {
 Node* push_front(Node* head, int value) {
     Node* node = new Node;
     node->value = value;
-    node->next  = head;
+    node->next = head;
     return node;
 }
 
@@ -35,7 +35,7 @@ void print_list(Node* head) {
     cout << endl;
 }
 
-// Part 2: Count the nodes
+// Part 2: Count the Nodes
 int count_nodes(Node* head) {
     int count = 0;
     for (Node* cur = head; cur != nullptr; cur = cur->next) {
@@ -44,7 +44,7 @@ int count_nodes(Node* head) {
     return count;
 }
 
-// Part 4: Check if list contains target value
+// Part 4: Find a Value
 bool contains(Node* head, int target) {
     for (Node* cur = head; cur != nullptr; cur = cur->next) {
         if (cur->value == target) {
@@ -57,44 +57,33 @@ bool contains(Node* head, int target) {
 int main() {
     Node* head = nullptr;
 
-    // Part 1: Build list so that 10 is at the front and 50 at the back.
-    // Since push_front adds to the front, insert in reverse order.
+    // Part 1: Build and Print a List
+    // To get 10, 20, 30, 40, 50, we must push in reverse order.
     head = push_front(head, 50);
     head = push_front(head, 40);
     head = push_front(head, 30);
     head = push_front(head, 20);
     head = push_front(head, 10);
-
     print_list(head);
 
-    // Part 2: Count nodes
+    // Part 2: Count the Nodes
     cout << "Count: " << count_nodes(head) << endl;
 
-    // Part 3: Remove first two nodes
-    head = remove_head(head);
-    head = remove_head(head);
-
+    // Part 3: Remove from the Front
+    head = remove_head(head); // Removes 10
     print_list(head);
-    head = remove_head(head);
+    head = remove_head(head); // Removes 20
     print_list(head);
-
     cout << "Count: " << count_nodes(head) << endl;
 
-    // Part 4: Test contains
-    cout << "Contains 40? " << (contains(head, 40) ? "true" : "false") << endl;
-    cout << "Contains 99? " << (contains(head, 99) ? "true" : "false") << endl;
+    // Part 4: Find a Value
+    cout << "Contains 40? " << contains(head, 40) << endl;
+    cout << "Contains 99? " << contains(head, 99) << endl;
+
+    // Optional: Clean up remaining nodes to avoid memory leaks
+    while (head != nullptr) {
+        head = remove_head(head);
+    }
 
     return 0;
 }
-
-/*
-@skillznathan ➜ /workspaces/LinkedList (main) $ g++ linkedlist.cpp -o linkedlist
-@skillznathan ➜ /workspaces/LinkedList (main) $ ./linkedlist
-10 20 30 40 50 
-Count: 5
-30 40 50 
-40 50 
-Count: 2
-Contains 40? true
-Contains 99? false
-*/
