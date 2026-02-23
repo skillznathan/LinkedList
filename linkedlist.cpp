@@ -87,3 +87,15 @@ int main() {
 
     return 0;
 }
+
+/*
+@skillznathan ➜ /workspaces/LinkedList (main) $ g++ linkedlist.cpp -o linkedlist 
+@skillznathan ➜ /workspaces/LinkedList (main) $ ./linkedlist
+10 20 30 40 50 
+Count: 5
+20 30 40 50 
+30 40 50 
+Count: 3
+Contains 40? 1
+Contains 99? 0
+*/
